@@ -1,0 +1,30 @@
+body{
+    background-color: #e2e2e2 !important;
+}
+
+.bg-primary{
+    background-color: rgb(0, 0, 0) !important;
+}
+
+.bg-secondary{
+    background-color: #198754 !important;
+}
+
+.signupform{
+    background-color: #198754;
+    padding: 30px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.mycontainer{
+    background-color: #e2e2e2 !important;
+    height: 600px;
+    width: 100%;
+}
+
+.myrow{
+    padding-top: 80px;
+    height: 600px;
+}
+
