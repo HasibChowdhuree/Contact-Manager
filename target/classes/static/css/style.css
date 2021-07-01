@@ -2,6 +2,10 @@ body{
     background-color: #e2e2e2 !important;
 }
 
+a{
+    text-decoration: none;
+}
+
 .bg-primary{
     background-color: rgb(0, 0, 0) !important;
 }
@@ -19,12 +23,20 @@ body{
 
 .mycontainer{
     background-color: #e2e2e2 !important;
-    height: 600px;
     width: 100%;
 }
 
 .myrow{
     padding-top: 80px;
-    height: 600px;
 }
+
+.footer {
+    left: 0;
+    height: 100px;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
 
