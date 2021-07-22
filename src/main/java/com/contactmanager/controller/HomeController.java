@@ -1,5 +1,7 @@
 package com.contactmanager.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -23,9 +25,17 @@ public class HomeController {
 	private userrepo userRepository;
 
     @RequestMapping("/")
-    public String Home(Model model){
+    public String Home(Model model, Principal principal){
         model.addAttribute("title", "Home - Contact Manager");
-        return "home";
+        try {
+			String email = principal.getName();
+			User user = userRepository.getUserByUserName(email);
+			model.addAttribute(user);
+			return "home";
+		}
+		catch(Exception exception) {
+			return "home";
+		}
     }
 	@RequestMapping(path="/processsignup", method=RequestMethod.POST)
 	private String ProcessSignup(@RequestParam("email") String email,

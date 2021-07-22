@@ -19,7 +19,7 @@ public class UserController {
     @RequestMapping("/dashboard")
     public String dashboard(Model model, Principal principal){
         String userName = principal.getName();
-
+        model.addAttribute("title", "Dashboard - Contact Manager");
         User user = userRepository.getUserByUserName(userName);
         model.addAttribute("user", user);
         return "normal/user_dashboard";
