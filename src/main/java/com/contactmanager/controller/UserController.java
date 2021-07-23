@@ -24,4 +24,13 @@ public class UserController {
         model.addAttribute("user", user);
         return "normal/user_dashboard";
     }
+
+    @RequestMapping("/add-contact")
+    public String add_contact(Model model, Principal principal){
+        String userName = principal.getName();
+        model.addAttribute("title", "Add Contact - Contact Manager");
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+        return "normal/user_add_contact";
+    }
 }
