@@ -9,7 +9,7 @@
 <body>
     <section class="d-flex justify-content-center align-items-center">
         <div class="col-md-4 col-sm-10 col-10" style="margin-top: 15px;">
-            <form class="signupform rounded"><br>
+            <form class="signupform rounded" action="#" th:object="${contact}" enctype="multipart/form-data" method="POST" th:action="@{/user/process-new-contact}"><br>
                 <h3 style="color: white; text-align: center;">Add new contact!</h3><br><br>
                 <div class="mb-3">
                     <input type="text" name="name" class="form-control" id="" placeholder="Name">
