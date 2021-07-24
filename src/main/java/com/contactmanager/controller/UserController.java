@@ -2,9 +2,12 @@ package com.contactmanager.controller;
 
 import java.security.Principal;
 
+import javax.servlet.http.HttpSession;
+
 import com.contactmanager.dao.userrepo;
 import com.contactmanager.entities.Contact;
 import com.contactmanager.entities.User;
+import com.contactmanager.helper.Message;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,14 +41,22 @@ public class UserController {
         return "normal/user_add_contact";
     }
     @PostMapping("/process-new-contact")
-    public String process_new_contact(@ModelAttribute Contact contact, Model model,  Principal principal){
+    public String process_new_contact(@ModelAttribute Contact contact, Model model,  Principal principal, HttpSession session){
         model.addAttribute("title", "Add Contact - Contact Manager");
         String userName = principal.getName(); 
         User user = userRepository.getUserByUserName(userName);
         model.addAttribute("user", user);
 
-        user.getContacts().add(contact);
-        this.userRepository.save(user);
-        return "normal/user_add_contact";
+        try{
+            user.getContacts().add(contact);
+            this.userRepository.save(user);
+			session.setAttribute("message",new Message("Successfully added! ","alert-success"));
+            return "normal/user_add_contact";
+        }
+        catch(Exception e) {
+			e.printStackTrace();
+			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+			return "normal/user_add_contact";
+		}
     }
 }

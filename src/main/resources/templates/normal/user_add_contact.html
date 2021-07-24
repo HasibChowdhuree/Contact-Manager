@@ -11,14 +11,18 @@
         <div class="col-md-4 col-sm-10 col-10" style="margin-top: 15px;">
             <form class="signupform rounded" action="#" th:object="${contact}" enctype="multipart/form-data" method="POST" th:action="@{/user/process-new-contact}"><br>
                 <h3 style="color: white; text-align: center;">Add new contact!</h3><br><br>
-                <div class="mb-3">
-                    <input type="text" name="name" class="form-control" id="" placeholder="Name">
+                <div th:if="${session.message}" th:classappend="${session.message.type}" class="alert" role="alert">
+                    <p class="text-center" th:text="${session.message.content}"> <p>
+                    <th:block th:text="${#session.removeAttribute('message')}"></th:block>
                 </div>
                 <div class="mb-3">
-                    <input type="text" name="email" class="form-control" id="" placeholder="Email">
+                    <input type="text" id="validationDefault01" name="name" class="form-control" placeholder="Name" required>
                 </div>
                 <div class="mb-3">
-                    <input type="text" name="phone" class="form-control" id="" placeholder="Phone">
+                    <input type="email" name="email" class="form-control" id="" placeholder="Email">
+                </div>
+                <div class="mb-3">
+                    <input type="text" id="validationDefault02" name="phone" class="form-control" placeholder="Phone" required>
                 </div>
                 <div class="mb-3">
                     <input type="text" name="city" class="form-control" id="" placeholder="City">
