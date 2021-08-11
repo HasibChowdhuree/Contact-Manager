@@ -66,16 +66,15 @@ public class UserController {
     }
     @GetMapping("/change-password")
     public String change_password(Model model, Principal principal) {
-        model.addAttribute("title", "Change Password - Easy Portfolio");
+        model.addAttribute("title", "Change Password - Contact Manager");
     	String userName = principal.getName(); 
         User user = userRepository.getUserByUserName(userName);
         model.addAttribute("user", user);
     	return "normal/user_change_password";
     }
-    // POST method for change password
     @PostMapping("/process-change-password")
     public String process_change_password(Model model, Principal principal, @RequestParam("oldPassword") String oldPassword, @RequestParam("password") String password, @RequestParam("confirmPassword") String confirmPassword, HttpSession session ){
-        model.addAttribute("title", "Change Password - Easy Portfolio");
+        model.addAttribute("title", "Change Password - Contact Manager");
     	String userName = principal.getName(); 
         User user = userRepository.getUserByUserName(userName);
         model.addAttribute("user", user);
@@ -100,6 +99,37 @@ public class UserController {
 			e.printStackTrace();
 			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
             return "normal/user_change_password";
+        }
+    }
+    @GetMapping("/change-email")
+    public String change_username(Model model, Principal principal) {
+        model.addAttribute("title", "Change Email - Contact Manager");
+    	String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+    	return "normal/user_change_email";
+    }
+    @PostMapping("/process-change-email")
+    public String process_change_username(Model model, Principal principal, @RequestParam("email") String newemail, HttpSession session ){
+        model.addAttribute("title", "Change Email - Contact Manager");
+    	String userName = principal.getName(); 
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("user", user);
+        try{
+			if(userRepository.findByEmail(newemail)!=null) {
+				throw new Exception("Email already exits");
+			}
+            else{
+                user.setEmail(newemail);
+                this.userRepository.save(user);
+                session.setAttribute("message",new Message("Email Changed! ","alert-success"));
+            }
+            return "normal/user_change_email";
+        }
+        catch(Exception e){
+			e.printStackTrace();
+			session.setAttribute("message",new Message(e.getMessage(),"alert-danger"));
+            return "normal/user_change_email";
         }
     }
 }
