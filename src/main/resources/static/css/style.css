@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans+SC');
+@import url('https://fonts.googleapis.com/css?family=Encode+Sans+Condensed');
+
+:root{
+    --color-primary: #fcc93a;
+    --color-primary-dark: rgb(158, 126, 40);
+    --color-white: #fff;
+    --color-white-dark: rgb(225, 225, 225);
+    --color-black: #000;
+    --color-black-light: rgb(40, 40, 40);
+}
+::-moz-selection {
+    background-color: var(--color-primary);
+    color: var(--color-black);
+}
+::selection {
+    background-color: var(--color-primary);
+    color: var(--color-black);
+}
+
+/* Classes for font color */
+
+.font-primary{
+    color: var(--color-primary) !important;
+}
+.font-white{
+    color: var(--color-white) !important;
+}
+.hover-primary:hover{
+    color: var(--color-primary) !important;
+}
+.hover-dark-primary:hover{
+    color: var(--color-primary-dark) !important;
+}
+.hover-white:hover{
+    color: var(--color-white) !important;
+}
+
+/* Classes for background color */
+
+.background-black{
+    background-color: var(--color-black) !important;
+}
+
+/* Classes for font styles */
+.font-sc{
+    font-family: 'encode sans sc';
+}
+
+
+
+a{
+    text-decoration: none !important;
+}
+
+
+body{
+    font-family: 'encode sans condensed';
+}
+.logo-text{
+    font-size: 30px;  
+    font-weight: 300;
+}
